@@ -8,6 +8,7 @@ export const metadata = {
 };
 
 const about = () => {
+  // when error occur error file load automatically
   // throw new Error("New Error occur")
   return (
     <div className={style.main}>

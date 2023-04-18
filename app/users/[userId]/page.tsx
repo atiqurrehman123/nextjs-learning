@@ -2,6 +2,7 @@ import getUser from "@/app/lib/getUser";
 import getUserPosts from "@/app/lib/getUserPosts";
 import { Suspense } from "react";
 import UserPosts from "./components/UserPosts";
+import getAllUsers from "@/app/lib/getAllUsers";
 type Params = {
   params: {
     userId: string;
@@ -24,4 +25,13 @@ export default async function UserPage({ params: { userId } }: Params) {
       </Suspense>
     </>
   );
+}
+//for creating staic pages during build time
+export async function generateStaticParams(){
+  const usersData:Promise<User[]> =getAllUsers()
+  const users=await usersData
+
+  return users.map(user=>({
+    userId:user.id.toString()
+  }))
 }
